@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <title>A "Hello, world" gadget</title>
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" href="bower_components/versal-gadget-api/versal-gadget-theme.css">
+    <link rel="stylesheet" href="main.css">
+
+    <script src="bower_components/eventEmitter/EventEmitter.js"></script>
+    <script src="bower_components/versal-gadget-api/versal-player-api.js"></script>
+
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/versal-gadget-api/versal-challenges-api.js"></script>
+</head>
+<body>
+  
+<div class="prompt"></div>
+<div><textarea class="answer"></textarea></div>
+<button>Submit</button>
+<div class="response"></div>
+  
+<script type="text/javascript">
+  var player = new VersalPlayerAPI();
+
+  var challengesApi = new VersalChallengesAPI(function(response) {
+     document.querySelector('.response').textContent = 'Score: ' + 
+       (response.scoring.totalScore || 0);
+   });
+  
+  var challenges = [{
+   prompt: 'What color has the sky?', answers: 'blue', scoring: 'strict'
+  }];
+  challengesApi.setChallenges(challenges);
+  document.querySelector('.prompt').textContent = challenges[0].prompt;
+  
+  var button = document.querySelector('button');
+  button.addEventListener('click', function() {
+     var answer = document.querySelector('.answer').value;
+     challengesApi.scoreChallenges([answer]);
+  });
+
+  // send this command to receive initial events
+  player.startListening();
+
+  // continuously watch for changes in height
+  player.watchBodyHeight();
+</script>
+</body>
+</html>

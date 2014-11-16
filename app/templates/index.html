@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="POST">
+<table>
+	<th> {{ quiz_heading }}</th>
+	<tr>
+		<td> {{ question }} </td>
+	</tr>
+	{% for answer in answers %}
+	<tr>
+		<td> <input type="radio" name="answer"> {{ answer.letter }} </td>
+		<td> {{ answer.description }}<td>
+	</tr>
+	{% endfor %}
+	<tr> <td> <input type="button" name="Submit" value="Submit Quiz" />
+</table>
+</form>
+{% endblock %}

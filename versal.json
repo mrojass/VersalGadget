@@ -1,0 +1,15 @@
+{
+  "name": "PointPlay",
+  "version": "0.1.5",
+  "title": "Point Play",
+  "description": "Awesome gadget for getting kids to learn",
+  "author": "xXSwagMaster18",
+  "launcher": "iframe",
+  "defaultConfig": {
+      "chosenColor" : "#00cc00",
+      "chosenWord" : "green"
+  },
+  "defaultUserState": {
+      "isBold" : false
+  }
+}
